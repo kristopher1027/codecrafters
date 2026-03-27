@@ -1,0 +1,3 @@
+module THE-CLI-CALCULATOR
+
+go 1.22.2
