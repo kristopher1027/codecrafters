@@ -11,11 +11,12 @@ import (
 func main() {
 	scanner := bufio.NewScanner(os.Stdin)
 
-	small := map[string]bool{"a": true, "an": true, "the": true, "of": true, "in": true, "on": true, "and": true, "to": true}
+	small := map[string]bool{"a": true, "an": true, "the": true, "of": true, "in": true, "on": true, "and": true, "to": true, "but": true, "or": true, "for": true, "nor": true, "at": true, "by": true, "up": true, "as": true, "is": true, "it": true}
 
-	fmt.Println("SENTINEL STRING TRANSFORMER — ONLINE {sample: upper <text>  lower <text> ")
-
+	fmt.Println("SENTINEL STRING TRANSFORMER — ONLINE  ")
 	for {
+		fmt.Println("Valid commands: *upper <text>  *lower <text>  *cap <text>  *title <text>  *snake <text>  *reverse <text>   *exit")
+
 		fmt.Print("> ")
 		if !scanner.Scan() {
 			break
@@ -28,36 +29,36 @@ func main() {
 		}
 
 		parts := strings.Fields(input)
-		cmd := strings.ToLower(parts[0])
+		command := strings.ToLower(parts[0])
 
-		if cmd == "exit" {
+		if command == "exit" {
 			fmt.Println("Shutting down String Transformer. Goodbye.")
 			return
 		}
 
 		if len(parts) < 2 {
-			fmt.Printf("✗ No text provided. Usage: %s <text>\n", cmd)
+			fmt.Println("ERROR:No command and text provided")
 			continue
 		}
 
 		text := strings.Join(parts[1:], " ")
 
-		var out string
+		var output string
 
-		switch cmd {
+		switch command {
 
 		case "upper":
-			out = strings.ToUpper(text)
+			output = strings.ToUpper(text)
 
 		case "lower":
-			out = strings.ToLower(text)
+			output = strings.ToLower(text)
 
 		case "cap":
 			words := strings.Fields(text)
 			for i, w := range words {
 				words[i] = strings.ToUpper(string(w[0])) + w[1:]
 			}
-			out = strings.Join(words, " ")
+			output = strings.Join(words, " ")
 
 		case "title":
 			words := strings.Fields(text)
@@ -69,7 +70,7 @@ func main() {
 					words[i] = lw
 				}
 			}
-			out = strings.Join(words, " ")
+			output = strings.Join(words, " ")
 
 		case "snake":
 			var r []rune
@@ -80,24 +81,24 @@ func main() {
 					r = append(r, '_')
 				}
 			}
-			out = strings.Trim(strings.ReplaceAll(string(r), "__", "_"), "_")
+			output = strings.Trim(strings.ReplaceAll(string(r), "__", "_"), "_")
 
 		case "reverse":
 			words := strings.Fields(text)
 			for i, w := range words {
 				r := []rune(w)
-				for l, h := 0, len(r)-1; l < h; l, h = l+1, h-1 {
-					r[l], r[h] = r[h], r[l]
+				for x, y := 0, len(r)-1; x < y; x, y = x+1, y-1 {
+					r[x], r[y] = r[y], r[x]
 				}
 				words[i] = string(r)
 			}
-			out = strings.Join(words, " ")
+			output = strings.Join(words, " ")
 
 		default:
-			fmt.Printf("✗ Unknown command: \"%s\"\nValid commands: upper, lower, cap, title, snake, reverse, exit\n", cmd)
+			fmt.Println(" Unknown command")
 			continue
 		}
 
-		fmt.Println("→", out)
+		fmt.Println("→", output)
 	}
 }
