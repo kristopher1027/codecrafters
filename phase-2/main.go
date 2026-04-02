@@ -1,3 +1,8 @@
+// CodeCrafters — Operation Gopher Protocol
+// Module: String Transformer
+// Author: [CHRISTOPHER OKOH]
+// Squad:  [THE INTERFACE]
+
 package main
 
 import (
