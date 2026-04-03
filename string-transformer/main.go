@@ -40,7 +40,7 @@ func main() {
 
 	fmt.Println("SENTINEL STRING TRANSFORMER — ONLINE  ")
 	for {
-		fmt.Println("Valid commands: *upper <text>  *lower <text>  *cap <text>  *title <text>  *snake <text>  *reverse <text>   *exit")
+		fmt.Println("Valid commands: *upper <text>  *lower <text>  *cap <text>  *title <text>  *snake <text>  *reverse <text>  *count <text>  *palindrome <text>  *history  *exit")
 
 		fmt.Print("> ")
 		if !scanner.Scan() {
